@@ -1,8 +1,8 @@
 const expect = require('chai').expect
-const { before, after, it } = require('mocha')
+const { before, after, it, describe } = require('mocha')
 const puppeteer = require('puppeteer')
 
-describe ('Desafio', () => {
+describe ('Desafio 2 - Evaluar la función click en un elemento de una página web mediante nombre, XPath y CSS', () => {
     let browser, page
 
     before(async () => {
@@ -23,7 +23,15 @@ describe ('Desafio', () => {
 
     it('Debe abrir el navegador y evaluar click validando que aparezca un elemento usando el texto del botón', async () => {
         await page.waitForSelector('#searchTerm')
-        await page.click('#onlineBankingMenu > div > strong');
+        //await page.click('#onlineBankingMenu > div > strong');
+        await page.$$eval('div > strong', buttons => {
+            for (const button of buttons) {
+              if (button.textContent === 'Online Banking') {
+                button.click();
+                break; // Clicking the first matching button and exiting the loop
+              }
+            }
+        });
         await page.waitForSelector('body > div.wrapper > div.container > div > div:nth-child(2) > div > div > div > div > div > h1');
     })
 
@@ -38,7 +46,7 @@ describe ('Desafio', () => {
         await page.click("#onlineBankingMenu");
         await page.waitForSelector('body > div.wrapper > div.container > div > div:nth-child(2) > div > div > div > div > div > h1');
     })
-})
+});
 
 function waitForTimeout(time) {
 	return new Promise(function (resolve) {

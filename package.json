@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "node node_modules/mocha/bin/mocha --timeout=60000 ./tests",
-    "desafio": "node node_modules/mocha/bin/mocha --timeout=60000 ./tests/desafio.test.js"
+    "desafio-2": "node node_modules/mocha/bin/mocha --timeout=60000 ./tests/desafio2.test.js",
+    "desafio-3": "node node_modules/mocha/bin/mocha --timeout=60000 ./tests/desafio3.test.js"
   },
   "author": "Christian Humberto Gonzalez Hernandez",
   "license": "ISC",
